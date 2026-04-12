@@ -1,6 +1,6 @@
-<p align="center"><img src="logo.svg" alt="vaultwarden" width="200"></p>
-
 # Vaultwarden [![Maintained by StackBlaze](https://img.shields.io/badge/maintained%20by-StackBlaze-blue)](https://stackblaze.com) [![Weekly Updates](https://img.shields.io/badge/updates-weekly-green)](https://github.com/stackblaze-templates/vaultwarden/actions) [![License](https://img.shields.io/github/license/stackblaze-templates/vaultwarden)](LICENSE) [![Deploy on StackBlaze](https://img.shields.io/badge/Deploy%20on-StackBlaze-orange)](https://stackblaze.com)
+
+<p align="center"><img src="logo.svg" alt="vaultwarden" width="200"></p>
 
 A lightweight, self-hosted Bitwarden-compatible password manager server written in Rust.
 
