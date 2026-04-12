@@ -1,0 +1,9 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - vw_data:/data
+volumes:
+  vw_data:
