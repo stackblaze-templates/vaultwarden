@@ -9,6 +9,7 @@ A lightweight, self-hosted Bitwarden-compatible password manager server written 
 ## Local Development
 
 ```bash
+cp .env.example .env   # fill in ADMIN_TOKEN before starting
 docker compose up
 ```
 
@@ -88,6 +89,20 @@ flowchart LR
 **Best for:** Production workloads, high-traffic applications, business-critical deployments.
 
 </details>
+
+## Security Configuration
+
+> **These variables must be set before running in production.** Copy `.env.example` to `.env` and fill in the values, or supply them via your deployment platform's secrets manager.
+
+| Variable | Required | Description |
+|---|---|---|
+| `ADMIN_TOKEN` | **Yes** | Secures the `/admin` panel. Generate with `openssl rand -base64 48`. Leaving this unset disables the admin UI entirely. |
+| `DATABASE_URL` | No | PostgreSQL connection string. Defaults to a local SQLite file if unset. |
+| `SIGNUPS_ALLOWED` | Recommended | Set to `false` after your initial account setup to prevent unauthorized registrations. |
+| `COOKIE_SECURE` | Recommended | Set to `true` when Vaultwarden sits behind a TLS-terminating proxy to enforce `Secure` cookie flags. |
+| `DOMAIN` | Recommended | Full public URL (e.g. `https://vault.example.com`). Required for WebAuthn and invitation links to work correctly. |
+
+> **Warning:** The `/admin` endpoint is publicly reachable by default. Always set a strong `ADMIN_TOKEN` or disable the admin UI entirely by leaving the variable unset.
 
 ---
 
