@@ -1,9 +1,19 @@
 services:
   vaultwarden:
-    image: vaultwarden/server:latest
+    image: vaultwarden/server:1.32.7
     ports:
       - "8080:80"
     volumes:
       - vw_data:/data
+    environment:
+      # Required: generate a strong random token (e.g. `openssl rand -base64 48`)
+      - ADMIN_TOKEN=${ADMIN_TOKEN:?ADMIN_TOKEN must be set — copy .env.example to .env and fill it in}
+      # Optional: set DATABASE_URL for PostgreSQL; defaults to SQLite
+      # - DATABASE_URL=${DATABASE_URL}
+      # Disable user registration after initial setup
+      - SIGNUPS_ALLOWED=false
+      # Set to true in production when behind a TLS-terminating proxy; keep false for local HTTP
+      - COOKIE_SECURE=${COOKIE_SECURE:-false}
+    restart: unless-stopped
 volumes:
   vw_data:
